@@ -97,12 +97,18 @@ Assemble scraped data into a Pandas DataFrame with appropriate data types.
 
 ![image](images/data_df.png)
 
+-------------------------------------------
+
 (Pandas pd.read_html() funtion used)
 
     table_rd_df = pd.read_html('https://static.bc-edx.com/data/web/mars_facts/temperature.html')
 
     mars_df = table_rd_df[0]
     mars_df.head()
+
+![image](images/mars_df.png)
+
+--------------------------------------------
 
 
 Analyze the dataset to answer specific questions and visualize insights.
