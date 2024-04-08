@@ -111,38 +111,43 @@ Assemble scraped data into a Pandas DataFrame with appropriate data types.
 --------------------------------------------
 
 
-Analyze the dataset to answer specific questions and visualize insights.
+## Analyze the dataset to answer specific questions and visualize insights.
 
-1. How many months are there on Mars?
+How many months are there on Mars?
 
-2. How many Martian days' worth of data are there?
+    mars_months = mars_df['month'].value_counts().sort_index()
 
-3. What is the average low temperature by month?
+![image](images/month_count.png)
 
-Plot the average temperature by month
+How many Martian days' worth of data are there?
 
-4. Average pressure by Martian month
+    mars_days = mars_df['sol'].count()
 
-Plot the average pressure by month
+    Output: 1867
 
-5. How many terrestrial (earth) days are there in a Martian year? Plot
+What is the average low temperature by month?
+
+    low_by_month = mars_df.groupby('month')['min_temp'].mean()
+
+![image](images/low_by_month.png)
+
+![image](images/low_temp_month.png)
+
+Average pressure by Martian month
+
+    avg_pressure_month = mars_df.groupby('month')['pressure'].mean()
+
+![image](images/avg_pressure_month.png)
+
+![image](images/pressure_month.png)
+
+How many terrestrial (earth) days are there in a Martian year? 
+
+![image](images/terr_days.png)
 
 Export the DataFrame to a CSV file.
 
+    mars_df.to_csv('mars_df.csv', index = False, header = True) 
+
 ### Conclusion
-On average, the third month has the coldest minimum temperature on Mars, and the eighth month is the warmest. But it is always very cold there in human terms! Atmospheric pressure is, on average, lowest in the sixth month and highest in the ninth. The distance from peak to peak is roughly 1425-750, or 675 days. A year on Mars appears to be about 675 days from the plot. Internet search confirms that a Mars year is equivalent to 687 earth days.
-
-
-
-
-### In part 2, dataframes were created with both methods:
-- 1. "Web scraping with splinter and beatifulsoup used" = data_df
-- 2. "Pandas pd.read_html() funtion used" = mars_df 
-- 3.  Second method, mars_df, was used for the analysis portion
-
-
-### References:
-
-* Used function ".from_records()" to add the table info, which was an output of list of tuples, into the Pandas dataframe:
-    * https://pandas.pydata.org/pandas-docs/version/0.19/generated/pandas.DataFrame.from_records.html 
-    * https://www.studytonight.com/pandas/pandas-dataframe-from_records-method
+On average, the third month has the coldest minimum temperature on Mars, and the eighth month is the warmest. But it is always very cold there in human terms. Atmospheric pressure is, on average, lowest in the sixth month and highest in the ninth. A year on Mars appears to be about 675 days from the plot. An internet search confirms that a Mars year is equivalent to 687 earth days.
